@@ -8,9 +8,23 @@
 </head>
 <body>
 
-<p class="flash"><%= flash.notice %></p>
+	<p class="flash">
+		<%= flash.notice %>
+	</p>
 
-<%= yield %>
+	<div id="container">
+		<div id="content">
+				<%= yield %><br /><br />
+				<hr>
+				<h6>
+					<% if logged_in? %>
+						<%= "Logged in as #{@currnet_user.email}" %>
+					<% else %>
+						Logged Out!
+					<% end %>
+				</h6>
+		</div>
+	</div>
 
 </body>
 </html>
