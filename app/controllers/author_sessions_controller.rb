@@ -1,4 +1,10 @@
 class AuthorSessionsController < ApplicationController
+
+	# before_action :require_params ### allow all methods need to be accessible to allow login and logout
+	# def require_params
+
+	# end
+
 	def new
 
 	end
