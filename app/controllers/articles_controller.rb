@@ -2,6 +2,15 @@ class ArticlesController < ApplicationController
 
 	include ArticlesHelper
 
+	before_action :require_login, only: [:new, :create, :edit, :destroy]
+	def require_login
+		unless Author.count == 0 || current_user
+			redirect_to login_path
+			flash.notice = "You're not logged in. Login to access!"
+			return false
+		end
+	end
+
 	def index
 		@articles = Article.all
 	end

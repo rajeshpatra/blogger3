@@ -4,8 +4,13 @@ class AuthorsController < ApplicationController
   before_action :zero_authors_or_authenticated, only: [:new, :create]
   def zero_authors_or_authenticated
     # here my condition is Author.count == 1 and current.user == true
+
+    #current_user means : a logged in user and have option for Logout
+
+    #Author.count == 0 : not a single author created
     unless Author.count == 0 || current_user
-      redirect_to root_path
+      redirect_to login_path
+      flash.notice = "You're not logged in. Login to access!"
       return false
     end
   end
@@ -14,7 +19,6 @@ class AuthorsController < ApplicationController
   def require_login
     unless Author.count == 0 || current_user
       redirect_to root_path
-      flash.notice == "error"
       return false
     end
   end
